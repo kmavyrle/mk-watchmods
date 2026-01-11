@@ -69,9 +69,9 @@ st.divider()
 
 # ---------------- PRODUCTS ----------------
 watches = [
-    {"name":"Mystic Sea 1", "price":"$3,200", "img":"images/watch1.jpg"},
-    {"name":"Mystic Sea 2", "price":"$4,800", "img":"images/watch2.jpg"},
-    {"name":"Mystic Sea 3", "price":"$6,200", "img":"images/watch3.jpg"},
+    {"name":"Mystic Sea 1", "price":"$295", "img":"images/watch1.jpg"},
+    {"name":"Mystic Sea 2", "price":"$295", "img":"images/watch2.jpg"},
+    {"name":"Mystic Sea 3", "price":"$295", "img":"images/watch3.jpg"},
 ]
 
 cols = st.columns(3)
