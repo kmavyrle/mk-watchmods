@@ -1,6 +1,5 @@
 import streamlit as st
 from PIL import Image
-from streamlit_option_menu import option_menu
 
 import smtplib
 from email.mime.text import MIMEText
@@ -130,7 +129,7 @@ homage = [
         "name": "Seiko Hulk Mod",
         "price": "$250",
         "imgs": [
-            "images/seikohulkmod1.png",
+            "images/seikohulkmod1.png   ",
             "images/mod1.jpg",
         ],
         "diameter": "40mm",
@@ -355,57 +354,34 @@ with col2:
     st.image(logo, width=800)
 #st.markdown("<div class='hero'>MK Watch Mods</div>", unsafe_allow_html=True)
     st.markdown(
-    "<div class='subhero' style='text-align:center; font-style:italic; letter-spacing:1px;'>Automatic timepieces. Made in boredom.</div>",
+    "<div class='subhero' style='text-align:center; font-style:italic; letter-spacing:1px;'>Automatic timepieces. Made with care.</div>",
     unsafe_allow_html=True)
 st.divider()
 
 
-# ---------------- SIDEBAR MENU ----------------
-with st.sidebar:
-    selected = option_menu(
-        "Menu",
-        ["Custom Pieces", "Homage"],
-        icons=["watch", "gem"],
-        menu_icon="house",
-        default_index=0,
-        styles={
-            "container": {
-                "padding": "12px",
-                "background-color": "white",
-                "border-radius": "18px",
-                "box-shadow": "0 12px 30px rgba(0,0,0,0.08)"
-            },
-            "icon": {"color": "#111", "font-size": "13px"},
-            "nav-link": {
-                "font-size": "13px",
-                "text-align": "left",
-                "margin": "6px 0px",
-                "color": "#111",
-                "border-radius": "12px",
-                "padding": "10px 12px",
-            },
-            "nav-link-selected": {
-                "background-color": "#0B2D5B",  # dark blue
-                "color": "white",
-                "border-radius": "12px",
-            },
-        }
-    )
+# ---------------- TABS ----------------
+tab1, tab2 = st.tabs(["Custom Pieces", "Homage"])
 
-collection_name = selected
-watches = custom_pieces if selected == "Custom Pieces" else homage
+with tab1:
+    collection_name = "Custom Pieces"
+    watches = custom_pieces
+    if st.session_state.page == "grid":
+        render_grid(watches, collection_name)
+    elif st.session_state.page == "details":
+        watch = find_watch_by_id(watches, st.session_state.selected_watch_id)
+        if watch:
+            render_details(watch, collection_name)
+        else:
+            render_grid(watches, collection_name)
 
-
-# ---------------- PAGE RENDER ----------------
-if st.session_state.page == "grid":
-    render_grid(watches, collection_name)
-
-elif st.session_state.page == "details":
-    watch = find_watch_by_id(watches, st.session_state.selected_watch_id)
-
-    if watch is None:
-        st.session_state.page = "grid"
-        st.session_state.selected_watch_id = None
-        st.rerun()
-
-    render_details(watch, collection_name)
+with tab2:
+    collection_name = "Homage"
+    watches = homage
+    if st.session_state.page == "grid":
+        render_grid(watches, collection_name)
+    elif st.session_state.page == "details":
+        watch = find_watch_by_id(watches, st.session_state.selected_watch_id)
+        if watch:
+            render_details(watch, collection_name)
+        else:
+            render_grid(watches, collection_name)
