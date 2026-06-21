@@ -93,7 +93,26 @@ body { background-color: #f6f6f6; }
     font-size: 14px;
     margin-top: 6px;
 }
-            
+
+/* Tab styling */
+button[data-baseweb="tab"] {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    color: #888 !important;
+    padding: 12px 32px !important;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #0B2D5B !important;
+    border-bottom: 3px solid #0B2D5B !important;
+}
+
+button[data-baseweb="tab"]:hover {
+    color: #0B2D5B !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
