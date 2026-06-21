@@ -505,7 +505,7 @@ window.addEventListener('keydown', e => {
 </html>
 """
 
-with st.expander("🎮 Tap if you have ADHD", expanded=False):
+with st.expander("🎮 Tap to play", expanded=False):
     components.html(GAME_HTML, height=180)
 
 st.divider()
