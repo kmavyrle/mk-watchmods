@@ -386,7 +386,7 @@ with col2:
 st.divider()
 
 # ---------------- BANNER IMAGE ----------------
-st.image("images/singapore_skyline.jpg", use_container_width=True)
+st.image("images/picture.webp", use_container_width=True)
 
 st.divider()
 
