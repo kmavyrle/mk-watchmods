@@ -394,7 +394,7 @@ GAME_HTML = """
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background:transparent; display:flex; flex-direction:column; align-items:center; }
-canvas { display:block; border-radius:14px; cursor:pointer; }
+canvas { display:block; border-radius:14px; cursor:pointer; width:100%; max-width:860px; aspect-ratio:860/160; }
 </style>
 </head>
 <body>
@@ -496,6 +496,7 @@ function draw() {
 
 draw();
 c.addEventListener('click', tryJump);
+c.addEventListener('touchstart', e => { e.preventDefault(); tryJump(); }, { passive: false });
 window.addEventListener('keydown', e => {
     if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); tryJump(); }
 });
@@ -504,7 +505,7 @@ window.addEventListener('keydown', e => {
 </html>
 """
 
-with st.expander("🎮 Click if you have ADHD", expanded=False):
+with st.expander("🎮 Tap if you have ADHD", expanded=False):
     components.html(GAME_HTML, height=180)
 
 st.divider()
