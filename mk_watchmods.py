@@ -126,52 +126,12 @@ custom_pieces = [
 
 homage = [
     {
-        "id": "homage_diver_1",
-        "name": "Homage Diver 1",
-        "price": "$295",
+        "id": "RHM",
+        "name": "Seiko Hulk Mod",
+        "price": "$250",
         "imgs": [
-            "images/watch4.jpg",
-            "images/watch4_2.jpg",
-        ],
-        "diameter": "40mm",
-        "thickness": "13.5mm",
-        "lug_width": "20mm",
-        "movement": "Seiko NH35 Automatic",
-        "case_material": "Stainless Steel",
-        "dial_color": "Blue",
-        "bezel": "Unidirectional Dive Bezel",
-        "water_resistance": "200m",
-        "crystal": "Sapphire",
-        "strap": "Bracelet",
-        "notes": "Homage style build."
-    },
-    {
-        "id": "homage_diver_2",
-        "name": "Homage Diver 2",
-        "price": "$295",
-        "imgs": [
-            "images/watch5.jpg",
-            "images/watch5_2.jpg",
-        ],
-        "diameter": "40mm",
-        "thickness": "13.5mm",
-        "lug_width": "20mm",
-        "movement": "Seiko NH35 Automatic",
-        "case_material": "Stainless Steel",
-        "dial_color": "Black",
-        "bezel": "Unidirectional Dive Bezel",
-        "water_resistance": "200m",
-        "crystal": "Sapphire",
-        "strap": "Bracelet",
-        "notes": "Homage style build."
-    },
-    {
-        "id": "homage_diver_3",
-        "name": "Homage Diver 3",
-        "price": "$295",
-        "imgs": [
-            "images/watch6.jpg",
-            "images/watch6_2.jpg",
+            "hulkmod2.jpg",
+            "mod1.jpg",
         ],
         "diameter": "40mm",
         "thickness": "13.5mm",
@@ -180,31 +140,12 @@ homage = [
         "case_material": "Stainless Steel",
         "dial_color": "Green",
         "bezel": "Unidirectional Dive Bezel",
-        "water_resistance": "200m",
+        "water_resistance": "Do not dive with this",
         "crystal": "Sapphire",
         "strap": "Bracelet",
         "notes": "Homage style build."
     },
-    {
-        "id": "homage_diver_4",
-        "name": "Homage Diver 4",
-        "price": "$295",
-        "imgs": [
-            "images/watch7.jpg",
-            "images/watch7_2.jpg",
-        ],
-        "diameter": "40mm",
-        "thickness": "13.5mm",
-        "lug_width": "20mm",
-        "movement": "Seiko NH35 Automatic",
-        "case_material": "Stainless Steel",
-        "dial_color": "White",
-        "bezel": "Unidirectional Dive Bezel",
-        "water_resistance": "200m",
-        "crystal": "Sapphire",
-        "strap": "Bracelet",
-        "notes": "Homage style build."
-    },
+
 ]
 
 
