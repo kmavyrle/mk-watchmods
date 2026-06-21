@@ -260,7 +260,7 @@ def render_grid(watches, collection_name):
             with st.container():
                 st.markdown("""
                 <div style="
-                    background:white;
+                    background:var(--secondary-background-color);
                     border-radius:20px;
                     padding:18px;
                     box-shadow:0 20px 40px rgba(0,0,0,0.06);
