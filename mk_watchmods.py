@@ -143,7 +143,7 @@ custom_pieces = [
         "case_material": "Stainless Steel",
         "dial_color": "Blue",
         "bezel": "Unidirectional Dive Bezel",
-        "water_resistance": "200m",
+        "water_resistance": "Do not dive with watch",
         "crystal": "Sapphire",
         "strap": "NATO (Blue/Grey)",
         "notes": "Custom-built Mod."
@@ -166,7 +166,7 @@ homage = [
         "case_material": "Stainless Steel",
         "dial_color": "Green",
         "bezel": "Unidirectional Dive Bezel",
-        "water_resistance": "Do not dive with this",
+        "water_resistance": "Do not dive with watch",
         "crystal": "Sapphire",
         "strap": "Bracelet",
         "notes": "Homage style build."
@@ -283,7 +283,7 @@ def render_grid(watches, collection_name):
                 """, unsafe_allow_html=True)
 
                 # Buttons INSIDE the card
-                if st.button("View Details", use_container_width = True,key=f"details_{w['id']}"):
+                if st.button("View", use_container_width = True,key=f"details_{w['id']}"):
                     st.session_state.page = "details"
                     st.session_state.selected_watch_id = w["id"]
                     st.rerun()
