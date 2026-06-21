@@ -130,7 +130,7 @@ homage = [
         "name": "Seiko Hulk Mod",
         "price": "$250",
         "imgs": [
-            "images/hulkmod2.jpg",
+            "images/hulk2mod.jpg",
             "images/mod1.jpg",
         ],
         "diameter": "40mm",
