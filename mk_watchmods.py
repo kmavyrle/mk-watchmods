@@ -185,6 +185,26 @@ homage = [
         "strap": "Bracelet",
         "notes": "Homage style build."
     },
+    {
+        "id": "homage_diver_4",
+        "name": "Homage Diver 4",
+        "price": "$295",
+        "imgs": [
+            "images/watch7.jpg",
+            "images/watch7_2.jpg",
+        ],
+        "diameter": "40mm",
+        "thickness": "13.5mm",
+        "lug_width": "20mm",
+        "movement": "Seiko NH35 Automatic",
+        "case_material": "Stainless Steel",
+        "dial_color": "White",
+        "bezel": "Unidirectional Dive Bezel",
+        "water_resistance": "200m",
+        "crystal": "Sapphire",
+        "strap": "Bracelet",
+        "notes": "Homage style build."
+    },
 ]
 
 
@@ -394,7 +414,7 @@ with col2:
     st.image(logo, width=800)
 #st.markdown("<div class='hero'>MK Watch Mods</div>", unsafe_allow_html=True)
     st.markdown(
-    "<div class='subhero' style='text-align:center; font-style:italic; letter-spacing:1px;'>Automatic timepieces. For the love of the Art.</div>",
+    "<div class='subhero' style='text-align:center; font-style:italic; letter-spacing:1px;'>Automatic timepieces. Made in boredom.</div>",
     unsafe_allow_html=True)
 st.divider()
 
@@ -405,7 +425,7 @@ with st.sidebar:
         "Menu",
         ["Custom Pieces", "Homage"],
         icons=["watch", "gem"],
-        menu_icon="cast",
+        menu_icon="house",
         default_index=0,
         styles={
             "container": {
