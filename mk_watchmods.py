@@ -361,7 +361,7 @@ def render_details(watch, collection_name):
                     model_name=watch["name"],
                     collection_name=collection_name
                 )
-                st.success(f"{name}, your {watch['name']} has been reserved. We will contact you shortly.")
+                st.success(f"{name}, your interest in {watch['name']} has acknowledged. We will contact you shortly.")
             except Exception as e:
                 st.error("Reservation recorded, but email failed to send.")
                 st.code(str(e))
