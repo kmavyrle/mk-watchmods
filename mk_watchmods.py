@@ -109,6 +109,14 @@ button[data-baseweb="tab"][aria-selected="true"] {
     border-bottom: 3px solid #0B2D5B !important;
 }
 
+div[data-baseweb="tab-highlight"] {
+    background-color: #0B2D5B !important;
+}
+
+div[data-baseweb="tab-border"] {
+    background-color: #ddd !important;
+}
+
 button[data-baseweb="tab"]:hover {
     color: #0B2D5B !important;
 }
