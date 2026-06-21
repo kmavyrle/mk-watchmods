@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from PIL import Image
 
 import smtplib
@@ -338,7 +339,7 @@ def render_details(watch, collection_name):
         name = st.text_input("Your name", key="reserve_name")
         contact = st.text_input("Email or Handphone Number", key="reserve_contact")
 
-        if st.button("Confirm Reservation", key="confirm_reserve"):
+        if st.button("Confirm", key="confirm_reserve"):
             if not name.strip():
                 st.error("Please enter your name.")
                 return
@@ -385,6 +386,128 @@ with col2:
     unsafe_allow_html=True)
 st.divider()
 
+# ---------------- MINI GAME ----------------
+GAME_HTML = """
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:transparent; display:flex; flex-direction:column; align-items:center; }
+canvas { display:block; border-radius:14px; cursor:pointer; }
+</style>
+</head>
+<body>
+<canvas id="c" width="860" height="160"></canvas>
+<script>
+const c = document.getElementById('c');
+const ctx = c.getContext('2d');
+const W = c.width, H = c.height;
+const GROUND = H - 28;
+const PX = 90, PW = 22, PH = 30;
+
+let state = 'idle', score = 0, hi = 0, speed = 5, frame = 0, raf;
+const p = { y: GROUND - PH, vy: 0, jumping: false };
+let obs = [];
+
+function reset() {
+    p.y = GROUND - PH; p.vy = 0; p.jumping = false;
+    obs = []; score = 0; speed = 5; frame = 0;
+    state = 'running';
+    cancelAnimationFrame(raf);
+    loop();
+}
+
+function tryJump() {
+    if (state !== 'running') { reset(); return; }
+    if (!p.jumping) { p.vy = -14; p.jumping = true; }
+}
+
+function loop() {
+    raf = requestAnimationFrame(loop);
+    frame++; score++;
+    speed = 5 + score / 300;
+
+    p.vy += 0.75; p.y += p.vy;
+    if (p.y >= GROUND - PH) { p.y = GROUND - PH; p.vy = 0; p.jumping = false; }
+
+    const interval = Math.max(55, 90 - Math.floor(score / 100));
+    if (frame % interval === 0) {
+        obs.push({ x: W + 10, w: 10 + Math.random() * 10, h: 18 + Math.random() * 28 });
+    }
+    obs.forEach(o => o.x -= speed);
+    obs = obs.filter(o => o.x > -30);
+
+    for (const o of obs) {
+        if (PX + PW - 4 > o.x && PX + 4 < o.x + o.w &&
+            p.y + PH - 4 > GROUND - o.h && p.y + 4 < GROUND) {
+            hi = Math.max(hi, score);
+            state = 'dead';
+            cancelAnimationFrame(raf);
+            draw(); return;
+        }
+    }
+    draw();
+}
+
+function draw() {
+    ctx.fillStyle = '#0d1117';
+    ctx.beginPath(); ctx.roundRect(0, 0, W, H, 14); ctx.fill();
+
+    ctx.fillStyle = '#1a3a6b';
+    ctx.fillRect(0, GROUND, W, 2);
+
+    // Player watch body
+    ctx.fillStyle = '#2a6dd9';
+    ctx.beginPath(); ctx.roundRect(PX, p.y, PW, PH, 5); ctx.fill();
+    ctx.fillStyle = '#1a4a99';
+    ctx.fillRect(PX + 5, p.y - 5, PW - 10, 5);
+    ctx.fillRect(PX + 5, p.y + PH, PW - 10, 5);
+    ctx.strokeStyle = '#a0c4ff'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(PX + PW/2, p.y + PH/2, 8, 0, Math.PI*2); ctx.stroke();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(PX+PW/2, p.y+PH/2); ctx.lineTo(PX+PW/2, p.y+PH/2-5); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(PX+PW/2, p.y+PH/2); ctx.lineTo(PX+PW/2+4, p.y+PH/2); ctx.stroke();
+
+    // Obstacles
+    obs.forEach(o => {
+        ctx.fillStyle = '#c0392b';
+        ctx.beginPath(); ctx.roundRect(o.x, GROUND-o.h, o.w, o.h, 3); ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,255,0.12)';
+        ctx.fillRect(o.x+2, GROUND-o.h+2, 2, o.h-4);
+    });
+
+    // Score
+    ctx.fillStyle = '#4a7fbd'; ctx.font = 'bold 13px monospace'; ctx.textAlign = 'right';
+    ctx.fillText('HI ' + String(hi).padStart(5,'0') + '   ' + String(score).padStart(5,'0'), W-18, 26);
+
+    ctx.textAlign = 'center';
+    if (state === 'idle') {
+        ctx.fillStyle = 'rgba(255,255,255,0.18)'; ctx.font = '13px monospace';
+        ctx.fillText('CLICK  OR  SPACE  TO  PLAY', W/2, H/2+6);
+    }
+    if (state === 'dead') {
+        ctx.fillStyle = 'rgba(255,255,255,0.9)'; ctx.font = 'bold 15px monospace';
+        ctx.fillText('GAME  OVER', W/2, H/2-6);
+        ctx.fillStyle = 'rgba(255,255,255,0.35)'; ctx.font = '11px monospace';
+        ctx.fillText('click or space to restart', W/2, H/2+14);
+    }
+}
+
+draw();
+c.addEventListener('click', tryJump);
+window.addEventListener('keydown', e => {
+    if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); tryJump(); }
+});
+</script>
+</body>
+</html>
+"""
+
+with st.expander("🎮 bored? play a game", expanded=False):
+    components.html(GAME_HTML, height=180)
+
+st.divider()
 
 # ---------------- TABS ----------------
 tab1, tab2 = st.tabs(["Custom Pieces", "Homage"])
